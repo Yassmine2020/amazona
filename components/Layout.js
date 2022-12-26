@@ -10,17 +10,24 @@ export default function Layout({ title, children }) {
       </Head>
       <div className="flex min-h-screen flex-col justify-between">
         <header>
-          <nav>
-            {/* <Link href="/" className="text-lg font-bold">
+          <nav className="flex h-12 justify-between px-4 shadow-md items-center">
+            <Link href="/" className="text-lg font-bold">
               amazona
-            </Link> */}
-            <Link href="/">
-              <a className="text-lg font-bold">Home</a>
             </Link>
+            <div>
+              <Link href="/cart" className="p-2">
+                Cart
+              </Link>
+              <Link href="/login" className="p-2">
+                Login
+              </Link>
+            </div>
           </nav>
         </header>
-        <main>{children}</main>
-        <footer>footer</footer>
+        <main className="container m-auto mt-4 px-4">{children}</main>
+        <footer className="flex h-10 justify-center items-center shadow-inner">
+          Copyright 2022 Amazona
+        </footer>
       </div>
     </>
   );
