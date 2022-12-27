@@ -13,12 +13,22 @@ export default function ProductScreen() {
   const { slug } = query;
   useEffect;
   const product = data.products.find((x) => x.slug === slug);
+
   if (!product) {
     return <div>Product Not Found</div>;
   }
   const addToCartHandler = () => {
-    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity: 1 } });
-    
+    const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
+    const quatity = existItem ? existItem.quantity + 1 : 1;
+
+    if (product.countInStock < quatity) {
+      alert('Sorry, Product out of Stock');
+      return;
+    }
+    dispatch({
+      type: 'CART_ADD_ITEM',
+      payload: { ...product, quantity: quatity },
+    });
   };
   return (
     <Layout title={product.name}>
