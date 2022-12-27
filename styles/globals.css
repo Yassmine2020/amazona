@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 .card {
-  @apply bg-white flex flex-col  h-full px-5 py-3 shadow rounded-xl;
+  /* @apply bg-white flex flex-col px-5 py-3 shadow rounded-xl;
+ */
+  @apply max-w-sm rounded overflow-hidden shadow-lg;
 }
 
 .primary-button {
