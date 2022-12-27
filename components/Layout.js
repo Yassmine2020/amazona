@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
 
+// eslint-disable-next-line react/prop-types
 export default function Layout({ title, children }) {
   return (
     <>

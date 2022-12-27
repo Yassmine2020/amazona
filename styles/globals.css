@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.card {
+  @apply bg-white flex flex-col  h-full px-5 py-3 shadow rounded-xl;
+}
+
+.primary-button {
+  @apply rounded bg-primary-300 py-2 px-4 shadow hover:bg-primary-400 active:bg-primary-500;
+}
