@@ -20,6 +20,7 @@ export default function Layout({ title, children }) {
               amazona
             </Link>
             <div>
+              {/* Add the number in the cart section */}
               <Link href="/cart" className="p-2">
                 Cart
                 {cart.cartItems.length > 0 && (

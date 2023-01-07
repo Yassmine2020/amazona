@@ -9,6 +9,7 @@ import { Store } from '../../utils/Store';
 
 export default function ProductScreen() {
   const { state, dispatch } = useContext(Store);
+  const router = useRouter();
   const { query } = useRouter();
   const { slug } = query;
   useEffect;
@@ -29,6 +30,7 @@ export default function ProductScreen() {
       type: 'CART_ADD_ITEM',
       payload: { ...product, quantity: quatity },
     });
+    router.push('/cart');
   };
   return (
     <Layout title={product.name}>
