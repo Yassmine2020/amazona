@@ -5,7 +5,7 @@ import { Store } from '../utils/Store';
 
 // eslint-disable-next-line react/prop-types
 export default function Layout({ title, children }) {
-  const { state, dispatch } = useContext(Store);
+  const { state } = useContext(Store);
   const { cart } = state;
   console.log(cart.cartItems.length);
   return (
