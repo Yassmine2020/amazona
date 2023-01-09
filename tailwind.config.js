@@ -11,7 +11,6 @@ module.exports = {
       },
       colors: {
         primary: {
-          // tomorow nredo amber
           50: '#fffbeb',
           100: '#fef3c7',
           200: '#fde68a',
@@ -22,6 +21,18 @@ module.exports = {
           700: '#b45309',
           800: '#92400e',
           900: '#78350f',
+        },
+        secondary: {
+          50: '#E8EAF6',
+          100: '#C5CAE9',
+          200: '#9FA8DA',
+          300: '#7986CB',
+          400: '#5C6BC0',
+          500: '#3F51B5',
+          600: '#3949AB',
+          700: '#303F9F',
+          800: '#283593',
+          900: '#1A237E',
         },
       },
     },
