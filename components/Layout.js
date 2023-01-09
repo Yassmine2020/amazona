@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Store } from '../utils/Store';
 
 // eslint-disable-next-line react/prop-types
@@ -8,6 +8,12 @@ export default function Layout({ title, children }) {
   const { state } = useContext(Store);
   const { cart } = state;
   console.log(cart.cartItems.length);
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+
+  // we update the value just if there is a change on cart.cartitems }, [cart.cartItems]???
+  useEffect(() => {
+    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
+  });
   return (
     <>
       <Head>
@@ -23,9 +29,9 @@ export default function Layout({ title, children }) {
               {/* Add the number in the cart section */}
               <Link href="/cart" className="p-2">
                 Cart
-                {cart.cartItems.length > 0 && (
+                {cartItemsCount > 0 && (
                   <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
-                    {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                    {cartItemsCount}
                   </span>
                 )}
               </Link>
