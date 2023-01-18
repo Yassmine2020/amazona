@@ -1,7 +1,8 @@
-import Link from 'next/link';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import Layout from '../components/Layout';
+import { signIn } from "next-auth/react";
+import Link from "next/link";
+import React from "react";
+import { useForm } from "react-hook-form";
+import Layout from "../components/Layout";
 
 export default function LoginScreen() {
   const {
@@ -10,23 +11,32 @@ export default function LoginScreen() {
     formState: { errors },
   } = useForm();
 
-  const submitHandler = ({ email, password }) => {
-    console.log({ email, password });
+  const submitHandler = async ({ email, password }) => {
+    try {
+      const result = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      });
+    } catch (error) {
+      toast.error(result.error);
+    }
   };
   return (
     <Layout title="Login">
       <form
         className="mx-auto max-w-screen-md"
-        onSubmit={handleSubmit(submitHandler)}>
+        onSubmit={handleSubmit(submitHandler)}
+      >
         <h1 className="mb-4 text-xl">Login</h1>
         <div className="mb-4">
           <input
             type="email"
-            {...register('email', {
-              required: 'Please enter email',
+            {...register("email", {
+              required: "Please enter email",
               pattern: {
                 value: /^[zaa]+@[aaz].[aza]+$/i,
-                message: 'Please enter valid email',
+                message: "Please enter valid email",
               },
             })}
             className=" bg-white block focus:outline-none 
@@ -41,11 +51,11 @@ export default function LoginScreen() {
         <div>
           <input
             type="password"
-            {...register('password', {
-              required: 'Please enter password',
+            {...register("password", {
+              required: "Please enter password",
               minLength: {
                 value: 6,
-                message: 'password is more then 5 characters',
+                message: "password is more then 5 characters",
               },
             })}
             className=" bg-white block focus:outline-none 
