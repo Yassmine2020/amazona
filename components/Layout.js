@@ -1,11 +1,17 @@
+import { useSession } from 'next-auth/react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Menu } from '@headlessui/react';
 import React, { useContext, useEffect, useState } from 'react';
 import { Store } from '../utils/Store';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 // eslint-disable-next-line react/prop-types
 export default function Layout({ title, children }) {
+  const { status, data: session } = useSession();
+  console.log(status);
+
   const { state } = useContext(Store);
   const { cart } = state;
   console.log(cart.cartItems.length);
@@ -20,6 +26,7 @@ export default function Layout({ title, children }) {
       <Head>
         <title>{title ? title + '- Amazona' : 'Amazona'}</title>
       </Head>
+      <ToastContainer position="bottom-center" limit={1}></ToastContainer>
       <div className="flex min-h-screen flex-col justify-between">
         <header>
           <nav className="flex h-12 justify-between px-4 shadow-md items-center">
@@ -42,9 +49,15 @@ export default function Layout({ title, children }) {
                   </span>
                 )}
               </Link>
-              <Link href="/login" className="p-2">
-                Login
-              </Link>
+              {status === 'loading' ? (
+                'Loading'
+              ) : session?.user ? (
+                session.user.name
+              ) : (
+                <Link href="/login" className="p-2">
+                  Login
+                </Link>
+              )}
             </div>
           </nav>
         </header>
