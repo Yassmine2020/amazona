@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { Menu } from '@headlessui/react';
 import React, { useContext, useEffect, useState } from 'react';
 import { Store } from '../utils/Store';
 
@@ -25,6 +26,12 @@ export default function Layout({ title, children }) {
             <Link href="/" className="text-lg font-bold">
               amazona
             </Link>
+            <Menu as="div" className="relative inline-block">
+              <Menu.Button className="text-blue-600">user</Menu.Button>
+              <Menu.Items>
+                <Menu.Item>Hey</Menu.Item>
+              </Menu.Items>
+            </Menu>
             <div>
               {/* Add the number in the cart section */}
               <Link href="/cart" className="p-2">
