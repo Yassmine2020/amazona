@@ -6,8 +6,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.7",
     "@heroicons/react": "^1.0.6",
     "@prisma/client": "^4.8.1",
+    "bcryptjs": "^2.4.3",
     "js-cookie": "^2.2.1",
     "next": "latest",
     "react": "18.2.0",
